@@ -35,6 +35,8 @@ public class RobotMap {
 	public static WPI_TalonSRX reverserTalonSRX1;
 	public static DigitalInput reverserLimitSwitch;
 	public static Encoder reverseEncoder;
+	public static Encoder rightEncoder;
+	public static Encoder leftEncoder;
  
 
 
@@ -51,6 +53,7 @@ public static void init() {
      driveBaseSpeedController3.setInverted(false);
      driveBaseSpeedControllerGroupLeft = new SpeedControllerGroup(driveBaseSpeedController1, driveBaseSpeedController2 , driveBaseSpeedController3 );
      LiveWindow.addActuator("DriveBase", "Speed Controller Group Left", driveBaseSpeedControllerGroupLeft);
+     leftEncoder = new Encoder(6, 5);
      
      driveBaseSpeedController4 = new Spark(0);
      LiveWindow.addActuator("DriveBase", "Speed Controller 4", (Spark) driveBaseSpeedController4);
@@ -63,6 +66,7 @@ public static void init() {
      driveBaseSpeedController6.setInverted(false);
      driveBaseSpeedControllerGroupRight = new SpeedControllerGroup(driveBaseSpeedController4, driveBaseSpeedController5 , driveBaseSpeedController6 );
      LiveWindow.addActuator("DriveBase", "Speed Controller Group Right", driveBaseSpeedControllerGroupRight);
+     rightEncoder = new Encoder(4, 3);
      
      driveBaseDifferentialDrive1 = new DifferentialDrive(driveBaseSpeedControllerGroupLeft, driveBaseSpeedControllerGroupRight);
      LiveWindow.addActuator("DriveBase", "Differential Drive 1", driveBaseDifferentialDrive1);
@@ -87,16 +91,21 @@ public static void init() {
      
      reverserTalonSRX1 = new WPI_TalonSRX(1);
      
-     reverserLimitSwitch = new DigitalInput(0);
+     reverserLimitSwitch = new DigitalInput(7);
      reverseEncoder = new Encoder(8, 9);//0 - -750
      reverseEncoder.reset();
      
      
      new Thread(() -> {
-   	   UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture();
+   	   UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture("cam0", "/dev/video0");
+   	   UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture("cam1", "/dev/video1");	
+   	   camera2.setResolution(320, 240);
+   	   camera2.setFPS(15);
    	   camera1.setResolution(320, 240);
    	   camera1.setFPS(15);
-
+   	   SmartDashboard.putNumber("LeftEnc", leftEncoder.get());
+   	   SmartDashboard.putNumber("RightEnc", rightEncoder.get());
+   	   
    	}).start();
 
  }

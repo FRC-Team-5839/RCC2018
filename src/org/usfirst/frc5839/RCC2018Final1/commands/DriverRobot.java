@@ -19,7 +19,7 @@ public class DriverRobot extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveBase.TankDrive(-Robot.oi.getJoystick1().getRawAxis(1)*0.9, -Robot.oi.getJoystick2().getRawAxis(1)*0.9);
+    	Robot.driveBase.TankDrive(Robot.oi.getJoystick1().getRawAxis(4)*0.9, Robot.oi.getJoystick1().getRawAxis(1)*0.9);
     }
 
     // Make this return true when this Command no longer needs to run execute()

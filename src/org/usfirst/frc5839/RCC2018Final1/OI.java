@@ -28,16 +28,11 @@ public class OI {
 
     public OI() {
 
-        joystick2 = new Joystick(1);
+        joystick2 = new Joystick(2);
         
-        joystickButton2 = new JoystickButton(joystick2, 1);
-        joystickButton2.whileHeld(new AutonomousCommand());
         joystick1 = new Joystick(0);
         
-        joystickButton1 = new JoystickButton(joystick1, 1);
-        joystickButton1.whileHeld(new AutonomousCommand());
-        
-        joystick3 = new Joystick(2);
+        joystick3 = new Joystick(1);
         joystickButton31 = new JoystickButton(joystick3, 1);
         joystickButton32 = new JoystickButton(joystick3, 2);
         joystickButton33 = new JoystickButton(joystick3, 3);
@@ -51,10 +46,10 @@ public class OI {
         
         joystickButton35.whileHeld(new CubeIntake());
         joystickButton36.whileHeld(new Cubeout());
+        joystickButton37.whenPressed(new PIDpos45());
         joystickButton31.whileHeld(new CubeLower());
         joystickButton34.whileHeld(new CubeLift());
         joystickButton32.whileHeld(new CubeCloseintake());
-        joystickButton33.whileHeld(new Lift45andhold());
 
 
         // SmartDashboard Buttons

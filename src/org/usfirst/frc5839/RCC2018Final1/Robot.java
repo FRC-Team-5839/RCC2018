@@ -31,14 +31,13 @@ public class Robot extends TimedRobot {
         RobotMap.init();
         driveBase = new DriveBase();
         intaker = new Intaker();
-        reverser = new Reverser(0.00125, 0, 0);
+        reverser = new Reverser();
 
         // OI must be constructed after subsystems. If the OI creates Commands
         //(which it very likely will), subsystems are not guaranteed to be
         // constructed yet. Thus, their requires() statements may grab null
         // pointers. Bad news. Don't move it.
         oi = new OI();
-        pdp = new PowerDistributionPanel(0);
 
         // Add commands to Autonomous Sendable Chooser
 
@@ -91,8 +90,7 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        SmartDashboard.putData(pdp);
-       	SmartDashboard.putBoolean("Limit", RobotMap.reverserLimitSwitch.get());
-       	SmartDashboard.putNumber("ENC", RobotMap.reverseEncoder.get());
+    	   SmartDashboard.putNumber("LeftEnc", RobotMap.leftEncoder.get());
+       	   SmartDashboard.putNumber("RightEnc", RobotMap.rightEncoder.get());
     }
 }

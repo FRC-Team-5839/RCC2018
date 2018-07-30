@@ -6,12 +6,16 @@ import org.usfirst.frc5839.RCC2018Final1.Robot;
 public class AutonomousCommand extends Command {
 
     public AutonomousCommand() {
+    	requires(Robot.reverser);
+    	requires(Robot.driveBase);
 
 
     }
 
     @Override
     protected void initialize() {
+    	Robot.reverser.lower();
+    	
     }
     @Override
     protected void execute() {

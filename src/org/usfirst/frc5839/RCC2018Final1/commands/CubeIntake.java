@@ -12,14 +12,12 @@ public class CubeIntake extends Command {
 
     public CubeIntake() {
     	requires(Robot.intaker);
-    	requires(Robot.reverser);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.reverser.breakdisable();
     	
     }
 
@@ -36,7 +34,6 @@ public class CubeIntake extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	Robot.intaker.cubestop();
-    	Robot.reverser.breakstop();
     }
 
     // Called when another command which requires one or more of the same

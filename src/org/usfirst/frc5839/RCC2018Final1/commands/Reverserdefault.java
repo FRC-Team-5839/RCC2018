@@ -1,6 +1,5 @@
 package org.usfirst.frc5839.RCC2018Final1.commands;
 
-
 import org.usfirst.frc5839.RCC2018Final1.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -8,22 +7,21 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class Cubeout extends Command {
+public class Reverserdefault extends Command {
 
-    public Cubeout() {
-    	requires(Robot.intaker);
+    public Reverserdefault() {
+    	requires(Robot.reverser);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.intaker.cubeout();
+    	Robot.reverser.breakstop();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -33,7 +31,7 @@ public class Cubeout extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.intaker.cubestop();
+    	Robot.reverser.breakdisable();
     }
 
     // Called when another command which requires one or more of the same
